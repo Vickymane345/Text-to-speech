@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../components/sidebar";
-import Output from "../components/output";
+import Sidebar from "./sidebar";
+import Output from "./output";
 
 export default function Home() {
   return (

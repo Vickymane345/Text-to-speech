@@ -1,4 +1,4 @@
-import Home from "./Home/page";
+import Home from "./components/home";
 import { MessageProvider } from "./Hooks/MessageContext";
 
 export default function Main() {
