@@ -24,6 +24,9 @@ interface MessageContextType {
 
   showHistory: boolean;
   toggleHistory: () => void;
+  newChat: () => void;
+  showProjects: boolean;
+
 
   speak: (text: string) => Promise<void>;
 }
@@ -47,6 +50,7 @@ export function MessageProvider({
   const [showHistory, setShowHistory] = useState(false);
 
 
+const [showProjects, setShowProjects] = useState(false);
   function sendMessage() {
 
     if (input.trim() === "") return;
@@ -63,6 +67,12 @@ export function MessageProvider({
 
     setInput("");
   }
+  function newChat() {
+  setMessages([]);
+  setInput("");
+  setShowHistory(false);
+  setShowProjects(false);
+}
 
 
   function toggleHistory() {
@@ -125,6 +135,9 @@ export function MessageProvider({
         messages,
         sendMessage,
         showHistory,
+            newChat,
+            showProjects,
+
         toggleHistory,
         speak,
       }}

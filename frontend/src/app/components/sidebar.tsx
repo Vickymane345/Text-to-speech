@@ -6,7 +6,7 @@ import { LuPanelLeftClose, LuPlus, LuFolders, LuHistory } from "react-icons/lu";
 import { useMessage } from "../Hooks/page";
 
 export default function Sidebar() {
-  const { messages, showHistory, toggleHistory } = useMessage();
+  const { messages, showHistory,newChat, toggleHistory } = useMessage();
 
   return (
     <div className="flex h-full flex-col gap-7 p-5">
@@ -34,12 +34,12 @@ export default function Sidebar() {
         </p>
 
         <nav className="flex gap-1 overflow-x-auto md:flex-col md:overflow-visible">
-          <button type="button" className="nav-item">
+          <button  onClick={newChat} type="button" className="nav-item">
             <LuPlus className="text-base text-ink-faint" />
             New chat
           </button>
 
-          <button type="button" className="nav-item">
+          <button onClick={toggleHistory} type="button" className="nav-item">
             <LuFolders className="text-base text-ink-faint" />
             Projects
           </button>
@@ -69,9 +69,6 @@ export default function Sidebar() {
         )}
       </div>
 
-      <p className="hidden font-mono text-[0.65rem] leading-relaxed tracking-[0.12em] text-ink-faint md:block">
-        gTTS · localhost:8000
-      </p>
     </div>
   );
 }
