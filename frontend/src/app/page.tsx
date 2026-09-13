@@ -1,5 +1,5 @@
 import Home from "./Home/page";
-import { MessageProvider } from "./Hooks/page";
+import { MessageProvider } from "./Hooks/MessageContext";
 
 export default function Main() {
   return (

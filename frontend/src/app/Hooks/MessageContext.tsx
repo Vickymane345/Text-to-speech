@@ -87,7 +87,7 @@ const [showProjects, setShowProjects] = useState(false);
     try {
 
       const response = await fetch(
-        "http://localhost:8000/speak",
+        "/api/speak",
         {
           method: "POST",
 

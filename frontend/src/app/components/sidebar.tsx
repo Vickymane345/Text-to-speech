@@ -3,7 +3,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { LuPanelLeftClose, LuPlus, LuFolders, LuHistory } from "react-icons/lu";
-import { useMessage } from "../Hooks/page";
+import { useMessage } from "../Hooks/MessageContext";
 
 export default function Sidebar() {
   const { messages, showHistory,newChat, toggleHistory } = useMessage();
