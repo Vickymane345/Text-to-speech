@@ -106,6 +106,7 @@ const [showProjects, setShowProjects] = useState(false);
             text: text,
             lang: voice.lang,
             tld: voice.tld,
+            voice: voice.voice,
           }),
         }
       );
