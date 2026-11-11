@@ -6,6 +6,7 @@ import {
   useState,
   ReactNode,
 } from "react";
+import { voices } from "../components/voices";
 
 
 interface Message {
@@ -27,6 +28,8 @@ interface MessageContextType {
   newChat: () => void;
   showProjects: boolean;
 
+  voiceId: string;
+  setVoiceId: (value: string) => void;
 
   speak: (text: string) => Promise<void>;
 }
@@ -51,6 +54,8 @@ export function MessageProvider({
 
 
 const [showProjects, setShowProjects] = useState(false);
+
+  const [voiceId, setVoiceId] = useState(voices[0].id);
   function sendMessage() {
 
     if (input.trim() === "") return;
@@ -84,6 +89,8 @@ const [showProjects, setShowProjects] = useState(false);
 
   async function speak(text: string) {
 
+    const voice = voices.find((item) => item.id === voiceId) ?? voices[0];
+
     try {
 
       const response = await fetch(
@@ -97,6 +104,8 @@ const [showProjects, setShowProjects] = useState(false);
 
           body: JSON.stringify({
             text: text,
+            lang: voice.lang,
+            tld: voice.tld,
           }),
         }
       );
@@ -139,6 +148,8 @@ const [showProjects, setShowProjects] = useState(false);
             showProjects,
 
         toggleHistory,
+        voiceId,
+        setVoiceId,
         speak,
       }}
     >

@@ -2,8 +2,9 @@
 
 import React from "react";
 import { IoMdSend } from "react-icons/io";
-import { LuVolume2 } from "react-icons/lu";
+import { LuVolume2, LuChevronDown } from "react-icons/lu";
 import { useMessage } from "../Hooks/MessageContext";
+import { voices, voiceGroups } from "./voices";
 
 export default function Output() {
   const {
@@ -11,6 +12,8 @@ export default function Output() {
     setInput,
     sendMessage,
     messages,
+    voiceId,
+    setVoiceId,
     speak,
   } = useMessage();
 
@@ -72,6 +75,36 @@ export default function Output() {
 
       <div className="relative border-t border-line bg-canvas px-6 pb-7 pt-5">
         <div className="mx-auto w-full max-w-2xl">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <label
+              htmlFor="voice"
+              className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-faint"
+            >
+              Voice
+            </label>
+
+            <div className="voice-select">
+              <select
+                id="voice"
+                value={voiceId}
+                onChange={(e) => setVoiceId(e.target.value)}
+              >
+                {voiceGroups.map((group) => (
+                  <optgroup key={group} label={group}>
+                    {voices
+                      .filter((voice) => voice.group === group)
+                      .map((voice) => (
+                        <option key={voice.id} value={voice.id}>
+                          {voice.label}
+                        </option>
+                      ))}
+                  </optgroup>
+                ))}
+              </select>
+              <LuChevronDown className="text-sm" aria-hidden="true" />
+            </div>
+          </div>
+
           <div className="composer">
             <input
               value={input}
@@ -91,7 +124,11 @@ export default function Output() {
           </div>
 
           <p className="mt-3 text-center font-mono text-[0.65rem] tracking-[0.1em] text-ink-faint">
-            Send saves the line · speaker plays it back
+            Send saves the line · speaker plays it back in the voice above
+          </p>
+
+          <p className="mt-1 text-center font-mono text-[0.65rem] tracking-[0.1em] text-ink-faint">
+            English typed with a Spanish voice comes out in a Spanish accent
           </p>
         </div>
       </div>
