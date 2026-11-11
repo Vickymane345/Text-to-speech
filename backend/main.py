@@ -6,7 +6,7 @@ from gtts import gTTS
 import io
 
 
-app = FastAPI()
+app = FastAPI(root_path="/api")
 
 
 app.add_middleware(
